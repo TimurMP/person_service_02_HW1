@@ -1,9 +1,8 @@
 package telran.java2022.person.service;
 
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import lombok.RequiredArgsConstructor;
 import telran.java2022.person.dao.PersonRepository;
 import telran.java2022.person.dto.AddressDto;
 import telran.java2022.person.dto.CityPopulationDto;
@@ -14,6 +13,8 @@ import telran.java2022.person.model.Person;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -91,8 +92,18 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
+	@Transactional
+
 	public Iterable<CityPopulationDto> getCitiesPopulation() {
-		// TODO Auto-generated method stub
+		Set<String> allCities = new HashSet<String>();
+
+		allCities = personRepository.getAllBy()
+				.map(person -> person.getAddress().getCity()).c
+				.collect(Collectors.toSet());
+
+
+
+		System.out.println(allCities);
 		return null;
 	}
 

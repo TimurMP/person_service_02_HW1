@@ -17,4 +17,11 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 
     Stream<Person> findAllByBirthDateBetween(LocalDate startDate, LocalDate endDate);
 
+    Stream<Person> getAllBy();
+    Long countByAddress_City(String city);
+
+
+
+
+
 }
