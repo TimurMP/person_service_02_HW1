@@ -68,9 +68,12 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
+	@Transactional
 	public Iterable<PersonDto> findPersonsByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return personRepository.findPersonByNameIgnoreCase(name)
+				.map(person -> modelMapper.map(person, PersonDto.class))
+				.collect(Collectors.toList());
+
 	}
 
 	@Override

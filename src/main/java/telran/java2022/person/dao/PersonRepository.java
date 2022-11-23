@@ -10,4 +10,6 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 
     Stream<Person> findByAddress_City(String city);
 
+    Stream<Person> findPersonByNameIgnoreCase(String name);
+
 }
