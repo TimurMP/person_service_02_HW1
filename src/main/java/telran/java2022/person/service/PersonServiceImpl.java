@@ -9,6 +9,7 @@ import telran.java2022.person.dto.AddressDto;
 import telran.java2022.person.dto.CityPopulationDto;
 import telran.java2022.person.dto.PersonDto;
 import telran.java2022.person.dto.PersonNotFoundException;
+import telran.java2022.person.model.Address;
 import telran.java2022.person.model.Person;
 
 @Service
@@ -47,10 +48,12 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public PersonDto updatePersonAddress(Integer id, AddressDto addressDto) {
+		Person person = personRepository.findById(id).orElseThrow(PersonNotFoundException::new);
+		Address address = modelMapper.map(addressDto, Address.class);
+		person.setAddress(address);
+		personRepository.save(person);
+		return modelMapper.map(person, PersonDto.class);
 
-
-
-		return null;
 	}
 
 	@Override

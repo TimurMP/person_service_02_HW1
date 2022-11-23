@@ -3,6 +3,7 @@ package telran.java2022.person.controller;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
+import telran.java2022.person.dto.AddressDto;
 import telran.java2022.person.dto.PersonDto;
 import telran.java2022.person.service.PersonService;
 
@@ -33,5 +34,11 @@ public class PersonController {
 	public PersonDto UpdatePersonName(@PathVariable Integer id, @PathVariable String name){
 		return personService.updatePersonName(id, name);
 	}
+
+	@PutMapping("/{id}/address")
+	public PersonDto UpdatePersonAddress(@PathVariable Integer id, @RequestBody AddressDto address){
+		return personService.updatePersonAddress(id, address);
+	}
+
 
 }
