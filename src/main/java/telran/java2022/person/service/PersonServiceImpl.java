@@ -13,8 +13,6 @@ import telran.java2022.person.model.Person;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -95,15 +93,14 @@ public class PersonServiceImpl implements PersonService {
 	@Transactional
 
 	public Iterable<CityPopulationDto> getCitiesPopulation() {
-		Set<String> allCities = new HashSet<String>();
-
-		allCities = personRepository.getAllBy()
-				.map(person -> person.getAddress().getCity()).c
-				.collect(Collectors.toSet());
-
-
-
-		System.out.println(allCities);
+//		Set<String> allCities = new HashSet<String>();
+//
+//		allCities = personRepository.getAllBy()
+//				.map(person -> person.getAddress().getCity())
+//				.collect(Collectors.toSet());
+//
+//
+//		System.out.println(allCities);
 		return null;
 	}
 
