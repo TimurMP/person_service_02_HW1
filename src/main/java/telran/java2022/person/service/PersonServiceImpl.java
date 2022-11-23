@@ -32,8 +32,9 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public PersonDto removePerson(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Person person = personRepository.findById(id).orElseThrow(PersonNotFoundException::new);
+		personRepository.delete(person);
+		return modelMapper.map(person, PersonDto.class);
 	}
 
 	@Override
