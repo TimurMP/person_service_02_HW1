@@ -40,5 +40,11 @@ public class PersonController {
 		return personService.updatePersonAddress(id, address);
 	}
 
+	@GetMapping("/city/{city}")
+	public Iterable <PersonDto> findPersonByCity(@PathVariable String city){
+		return personService.findPersonsByCity(city);
+	}
+
+
 
 }

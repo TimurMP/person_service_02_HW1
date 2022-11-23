@@ -4,6 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import telran.java2022.person.model.Person;
 
+import java.util.stream.Stream;
+
 public interface PersonRepository extends CrudRepository<Person, Integer> {
+
+    Stream<Person> findByAddress_City(String city);
 
 }

@@ -12,6 +12,9 @@ import telran.java2022.person.dto.PersonNotFoundException;
 import telran.java2022.person.model.Address;
 import telran.java2022.person.model.Person;
 
+import javax.transaction.Transactional;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class PersonServiceImpl implements PersonService {
@@ -57,9 +60,11 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
+	@Transactional
 	public Iterable<PersonDto> findPersonsByCity(String city) {
-		// TODO Auto-generated method stub
-		return null;
+		return personRepository.findByAddress_City(city)
+				.map(person -> modelMapper.map(person, PersonDto.class))
+				.collect(Collectors.toList());
 	}
 
 	@Override
