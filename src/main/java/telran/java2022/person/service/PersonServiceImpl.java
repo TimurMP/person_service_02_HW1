@@ -13,6 +13,7 @@ import telran.java2022.person.model.Address;
 import telran.java2022.person.model.Person;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,9 +78,16 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
+	@Transactional
 	public Iterable<PersonDto> findPersonsBetweenAge(Integer minAge, Integer maxAge) {
-		// TODO Auto-generated method stub
-		return null;
+		LocalDate from = LocalDate.now().minusYears(maxAge);
+		LocalDate to = LocalDate.now().minusYears(minAge);
+		System.out.println(from);
+		System.out.println(to);
+
+		return personRepository.findAllByBirthDateBetween(from, to)
+				.map(person -> modelMapper.map(person, PersonDto.class))
+				.collect(Collectors.toList());
 	}
 
 	@Override
