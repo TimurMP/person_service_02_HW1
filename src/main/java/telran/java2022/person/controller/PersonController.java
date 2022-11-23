@@ -29,4 +29,9 @@ public class PersonController {
 		return personService.removePerson(id);
 	}
 
+	@PutMapping("/{id}/name/{name}")
+	public PersonDto UpdatePersonName(@PathVariable Integer id, @PathVariable String name){
+		return personService.updatePersonName(id, name);
+	}
+
 }

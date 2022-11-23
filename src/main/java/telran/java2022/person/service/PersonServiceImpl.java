@@ -39,13 +39,17 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public PersonDto updatePersonName(Integer id, String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Person person = personRepository.findById(id).orElseThrow(PersonNotFoundException::new);
+		person.setName(name);
+		personRepository.save(person);
+		return modelMapper.map(person, PersonDto.class);
 	}
 
 	@Override
 	public PersonDto updatePersonAddress(Integer id, AddressDto addressDto) {
-		// TODO Auto-generated method stub
+
+
+
 		return null;
 	}
 
